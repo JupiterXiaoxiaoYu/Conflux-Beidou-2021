@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="css/login.css">
+  <meta charset="UTF-8">
+  <title>Log in</title>
+</head>
+
+<body>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <div id = "menu">
+      <ul>
+        <h2 class="active"><a href="login.html">Customer</a></h2>
+        <h2 class="inactive underlineHover" ><a href="enterpriseLogin.html">Enterprise</a></h2>
+      </ul>
+    </div>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="images/user_icon.png" id="user-icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <p class="valid">Valid. Please wait a moment.</p>
+    <p class="error">Error. Please enter correct Username &amp; password.</p>
+    <form action="clients.html">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Personal Email">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password">
+      <input type="submit" id="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Create New Account</a><br>
+      <a class="underlineHover" href="#">Forgot Password? </a>
+    </div>
+
+  </div>
+</div>
+</body>
+
+<script>
+
+  function ValidateEmail(inputText) {
+     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+     if(inputText.value.match(mailformat)) {
+        return true;
+     }
+     else{
+       alert("Invalid email address!");
+       return false;
+     }
+  }
+
+  $(document).ready(function() {
+    //$('#username').focus();
+    $('#submit').click(function() {
+
+      event.preventDefault(); // prevent PageReLoad
+
+      var ValidEmail = ValidateEmail($('#username').val()); // User validate
+      var ValidPassword = ValidateEmail($('#password').val()); // Password validate
+
+      if (ValidEmail === true && ValidPassword === true) { // if ValidEmail & ValidPassword
+          $('.valid').css('display', 'block');
+          window.location = "http://arkev.com"; // go to home.html
+      }
+      else {
+          $('.error').css('display', 'block'); // show error msg
+      }
+
+    });
+  });
+
+</script>
+</html>
